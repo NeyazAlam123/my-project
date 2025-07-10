@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User List</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen py-10 px-4">
+
+  <div class="max-w-3xl mx-auto">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-3xl font-bold text-gray-800">User List</h1>
+      <a href="/add" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition">
+        + Add New User
+      </a>
+    </div>
+
+    <% if (users.length > 0) { %>
+      <div class="space-y-4">
+        <% users.forEach(user => { %>
+          <div class="bg-white p-4 rounded-xl shadow flex items-center justify-between">
+            <div>
+              <p class="text-lg font-semibold text-gray-800"><%= user.name %></p>
+              <p class="text-gray-500 text-sm"><%= user.email %></p>
+            </div>
+            <div class="space-x-2">
+              <a href="/edit/<%= user._id %>" class="text-blue-600 font-medium hover:underline">Edit</a>
+              <a href="/delete/<%= user._id %>" class="text-red-600 font-medium hover:underline">Delete</a>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <p class="text-gray-600 mt-4">No users found.</p>
+    <% } %>
+  </div>
+
+</body>
+</html>
